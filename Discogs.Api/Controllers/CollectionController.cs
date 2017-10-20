@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Discogs.Api.Data;
+using System.Linq;
+using Discogs.Api.ViewModels;
+using Discogs.Api.Mappers;
 
 namespace Discogs.Api.Controllers
 {
@@ -12,7 +10,7 @@ namespace Discogs.Api.Controllers
     [Route("api/collection")]
     public class CollectionController : Controller
     {
-        private IDiscogsRepository _repository;
+        private readonly IDiscogsRepository _repository;
 
         public CollectionController(IDiscogsRepository repository)
         {
@@ -24,7 +22,18 @@ namespace Discogs.Api.Controllers
         {
             var collection = _repository.GetCollection();
 
-            return Ok(collection);
+            var results = collection.releases.Select(r => new ReleaseViewModel
+            {
+                Artist = ReleaseMapper.MapArtistDescription(r.basic_information.artists),
+                Label = ReleaseMapper.MapLabelDescription(r.basic_information.labels),
+                Format = r.basic_information.formats.FirstOrDefault()?.name,
+                FormatDetail = ReleaseMapper.MapFormatDescription(r.basic_information.formats),
+                Title = r.basic_information.title,
+                ImageUrl = r.basic_information.cover_image,
+                Year = r.basic_information.year
+            });
+
+            return Ok(results);
         }
     }
 }
