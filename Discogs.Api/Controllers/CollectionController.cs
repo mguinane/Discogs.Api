@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Discogs.Api.Data;
 using System.Linq;
+using System.Threading.Tasks;
 using Discogs.Api.ViewModels;
-using Discogs.Api.Mappers;
+using Discogs.Api.Helpers;
+using Discogs.Api.Models;
 
 namespace Discogs.Api.Controllers
 {
@@ -18,9 +20,9 @@ namespace Discogs.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] SearchCriteria criteria)
         {
-            var collection = _repository.GetCollection();
+            var collection = await _repository.GetCollection(criteria);
 
             var results = collection.releases.Select(r => new ReleaseViewModel
             {

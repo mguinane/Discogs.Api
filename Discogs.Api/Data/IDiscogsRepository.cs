@@ -9,7 +9,7 @@ namespace Discogs.Api.Data
 {
     public interface IDiscogsRepository
     {
-        Collection GetCollection();
-        Wantlist GetWantlist();
+        Task<Collection> GetCollection(SearchCriteria criteria);
+        Task<Wantlist> GetWantlist(SearchCriteria criteria);
     }
 }

@@ -2,7 +2,9 @@
 using Discogs.Api.Data;
 using System.Linq;
 using Discogs.Api.ViewModels;
-using Discogs.Api.Mappers;
+using Discogs.Api.Helpers;
+using System.Threading.Tasks;
+using Discogs.Api.Models;
 
 namespace Discogs.Api.Controllers
 {
@@ -18,9 +20,9 @@ namespace Discogs.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get([FromQuery] SearchCriteria criteria)
         {
-            var wantlist = _repository.GetWantlist();
+            var wantlist = await _repository.GetWantlist(criteria);
 
             var results = wantlist.wants.Select(r => new ReleaseViewModel
             {

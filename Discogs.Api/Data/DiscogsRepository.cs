@@ -1,33 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Discogs.Api.Models;
 using System.IO;
+using System.Net.Http;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using Discogs.Api.Helpers;
 
 namespace Discogs.Api.Data
 {
     public class DiscogsRepository : IDiscogsRepository
     {
-        private Collection _collection;
-        private Wantlist _wantlist;
+        private static readonly HttpClient Client = new HttpClient();
 
-        public DiscogsRepository()
+        static DiscogsRepository()
         {
-            _collection = JsonConvert.DeserializeObject<Collection>(File.ReadAllText(@"Data\collection.json"));
-            _wantlist = JsonConvert.DeserializeObject<Wantlist>(File.ReadAllText(@"Data\wantlist.json"));
+            Client.BaseAddress = new Uri("https://api.discogs.com/");
+            Client.DefaultRequestHeaders.Accept.Clear();
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            // TODO update user agent with api url when deployed to azure - https://www.discogs.com/developers/#page:home,header:home-general-information
+            Client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/0.1");
         }
 
-        public Collection GetCollection()
+        public async Task<Collection> GetCollection(SearchCriteria criteria)
         {
-            return _collection;
+            Collection collection = null;
+
+            var response = await Client.GetAsync(UriHelper.FormatCollectionRequestUri(criteria));
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                collection = JsonConvert.DeserializeObject<Collection>(result);
+            }
+
+            return collection;
         }
 
-        public Wantlist GetWantlist()
+        public async Task<Wantlist> GetWantlist(SearchCriteria criteria)
         {
-            return _wantlist;
+            Wantlist wantlist = null;
+
+            var response = await Client.GetAsync(UriHelper.FormatWantlistRequestUri(criteria));
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                wantlist = JsonConvert.DeserializeObject<Wantlist>(result);
+            }
+
+            return wantlist;
         }
     }
 }
