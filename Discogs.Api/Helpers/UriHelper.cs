@@ -39,7 +39,7 @@ namespace Discogs.Api.Helpers
             if (criteria.PageSize > 0)           
                 requestUri.Append("&per_page=" + criteria.PageSize.ToString());
             else
-                requestUri.Append("per_page=50"); // TODO get default page size from config
+                requestUri.Append("&per_page=50"); // TODO get default page size from config
 
             if (!string.IsNullOrWhiteSpace(criteria.SortBy))
                 requestUri.Append("&sort=" + criteria.SortBy);
@@ -70,7 +70,7 @@ namespace Discogs.Api.Helpers
             if (criteria.PageSize > 0)
                 requestUri.Append("&per_page=" + criteria.PageSize.ToString());
             else
-                requestUri.Append("per_page=50"); // TODO get default page size from config
+                requestUri.Append("&per_page=50"); // TODO get default page size from config
 
             return requestUri.ToString();
         }
