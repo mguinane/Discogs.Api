@@ -32,6 +32,7 @@ namespace Discogs.Api.Controllers
                 FormatDetail = ReleaseMapper.MapFormatDescription(r.basic_information.formats),
                 Title = r.basic_information.title,
                 // TODO how to get image for wantlist release?
+                ImageUrl = "img",
                 Year = r.basic_information.year
             });
 
