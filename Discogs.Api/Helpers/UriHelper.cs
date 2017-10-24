@@ -18,7 +18,7 @@ namespace Discogs.Api.Helpers
             requestUri.Append("users/");
 
             if (!string.IsNullOrWhiteSpace(criteria.Username))
-                requestUri.Append(criteria.Username + "/");
+                requestUri.Append(criteria.Username.ToLower() + "/");
             else
                 requestUri.Append("marcusg/");
 
@@ -42,7 +42,7 @@ namespace Discogs.Api.Helpers
                 requestUri.Append("&per_page=50"); // TODO get default page size from config
 
             if (!string.IsNullOrWhiteSpace(criteria.SortBy))
-                requestUri.Append("&sort=" + criteria.SortBy);
+                requestUri.Append("&sort=" + criteria.SortBy.ToLower());
             
             return requestUri.ToString();
         }
@@ -55,7 +55,7 @@ namespace Discogs.Api.Helpers
 
             requestUri.Append("users/");
 
-            if (!string.IsNullOrWhiteSpace(criteria.Username))
+            if (!string.IsNullOrWhiteSpace(criteria.Username.ToLower()))
                 requestUri.Append(criteria.Username + "/");
             else
                 requestUri.Append("marcusg/");
