@@ -16,7 +16,7 @@ namespace Discogs.Api.Controllers
 
         public WantlistController(IDiscogsRepository repository)
         {
-            _repository = repository;
+            _repository = repository
         }
 
         [HttpGet]
