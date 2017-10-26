@@ -15,11 +15,11 @@ namespace Discogs.Api.Data
 
         static DiscogsRepository()
         {
+            // TODO get api url from configuration
             Client.BaseAddress = new Uri("https://api.discogs.com/");
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            // TODO update user agent with api url when deployed to azure - https://www.discogs.com/developers/#page:home,header:home-general-information
-            Client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/0.1");
+            Client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
         }
 
         public async Task<Collection> GetCollection(SearchCriteria criteria)

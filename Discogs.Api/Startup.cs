@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Serialization;
 using Discogs.Api.Data;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Discogs.Api
 {
@@ -21,8 +22,6 @@ namespace Discogs.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Typically would be AddScoped for a database repository (if using EF via DbContext which also has Scoped lifetime)
-            // Using AddSingleton for our in memory repository so that hotels.json file is not deserialised on each request.
             services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
 
             services.AddMvc()
@@ -31,6 +30,16 @@ namespace Discogs.Api
                     // Allow camel casing in JSON property names
                     config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
+
+            services.AddSwaggerGen(config =>
+            {
+                config.SwaggerDoc("v1", new Info
+                {
+                    Title = "Discogs.Api",
+                    Version = "v1",
+                    Description = "ASP.NET Core 2.0 API project to wrap Discogs API"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +49,13 @@ namespace Discogs.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Discogs.Api v1");
+            });
 
             app.UseMvc();
         }
