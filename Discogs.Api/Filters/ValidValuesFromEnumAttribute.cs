@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discogs.Api.Filters
 {
@@ -18,13 +15,16 @@ namespace Discogs.Api.Filters
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var valueString = value.ToString().ToLower();
-
-            if (!Enum.GetNames(_enumType).Contains(valueString))
+            if (value != null)
             {
-                return new ValidationResult($"Invalid {_enumType.Name} value.");
-            }
+                var valueString = value.ToString().ToLower();
 
+                if (!Enum.GetNames(_enumType).Contains(valueString))
+                {
+                    return new ValidationResult($"Invalid {_enumType.Name} value.");
+                }
+
+            }
             return ValidationResult.Success;
         }
     }

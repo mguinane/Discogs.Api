@@ -1,5 +1,4 @@
-﻿using System;
-using Discogs.Api.Models;
+﻿using Discogs.Api.Models;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;

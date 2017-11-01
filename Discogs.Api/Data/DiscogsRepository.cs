@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Discogs.Api.Models;
-using System.IO;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
