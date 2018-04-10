@@ -5,7 +5,7 @@ namespace Discogs.Api.Data
 {
     public interface IDiscogsRepository
     {
-        Task<Collection> GetCollection(SearchCriteria criteria);
-        Task<Wantlist> GetWantlist(SearchCriteria criteria);
+        Task<Collection> GetCollectionAsync(SearchCriteria criteria);
+        Task<Wantlist> GetWantlistAsync(SearchCriteria criteria);
     }
 }

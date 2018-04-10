@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Discogs.Api.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
-using Discogs.Api.Data;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Discogs.Api
@@ -16,6 +16,8 @@ namespace Discogs.Api
         }
 
         // TODO how to read appsettings file?
+
+        // TODO move service config to extension methods, add CORS support
 
         public IConfiguration Configuration { get; }
 

@@ -21,7 +21,7 @@ namespace Discogs.Api.Data
             Client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
         }
 
-        public async Task<Collection> GetCollection(SearchCriteria criteria)
+        public async Task<Collection> GetCollectionAsync(SearchCriteria criteria)
         {
             Collection collection = null;
 
@@ -36,7 +36,7 @@ namespace Discogs.Api.Data
             return collection;
         }
 
-        public async Task<Wantlist> GetWantlist(SearchCriteria criteria)
+        public async Task<Wantlist> GetWantlistAsync(SearchCriteria criteria)
         {
             Wantlist wantlist = null;
 

@@ -30,7 +30,7 @@ namespace Discogs.Api.Controllers
         {
             try
             {
-                var wantlist = await _repository.GetWantlist(criteria);
+                var wantlist = await _repository.GetWantlistAsync(criteria);
 
                 if (wantlist == null) return NotFound("No Wantlist data found for specified criteria.");
 

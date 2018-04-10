@@ -1,9 +1,8 @@
-using System;
 using Xunit;
 
 namespace Discogs.Api.Tests
 {
-    public class UnitTest1
+    public class CollectionControllerTest
     {
         [Fact]
         public void Test1()

@@ -1,13 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Discogs.Api.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Discogs.Api.Data;
 using Discogs.Api.Filters;
-using Discogs.Api.ViewModels;
 using Discogs.Api.Helpers;
 using Discogs.Api.Models;
+using Discogs.Api.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Discogs.Api.Controllers
 {
@@ -30,7 +30,7 @@ namespace Discogs.Api.Controllers
         {
             try
             {
-                var collection = await _repository.GetCollection(criteria);
+                var collection = await _repository.GetCollectionAsync(criteria);
 
                 if (collection == null) return NotFound("No Collection data found for specified criteria.");
 
