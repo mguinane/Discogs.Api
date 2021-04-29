@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 
 namespace Discogs.Api
@@ -35,7 +36,7 @@ namespace Discogs.Api
 
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                config.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Discogs.Api",
                     Version = "v1",
