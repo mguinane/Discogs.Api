@@ -12,9 +12,9 @@ using Microsoft.Extensions.Logging;
 namespace Discogs.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/wantlist")]
+    [Route("api/[controller]")]
     [ValidateModel]
-    public class WantlistController : Controller
+    public class WantlistController : ControllerBase
     {
         private readonly IDiscogsRepository _repository;
         private readonly ILogger<WantlistController> _logger;

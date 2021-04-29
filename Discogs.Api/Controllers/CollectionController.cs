@@ -12,9 +12,9 @@ using System.Threading.Tasks;
 namespace Discogs.Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/collection")]
+    [Route("api/[controller]")]
     [ValidateModel]
-    public class CollectionController : Controller
+    public class CollectionController : ControllerBase
     {
         private readonly IDiscogsRepository _repository;
         private readonly ILogger<CollectionController> _logger;

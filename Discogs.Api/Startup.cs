@@ -1,11 +1,10 @@
 ﻿using Discogs.Api.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
-using Swashbuckle.AspNetCore.Swagger;
 
 namespace Discogs.Api
 {
@@ -27,9 +26,8 @@ namespace Discogs.Api
         {
             services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
 
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(config =>
+            services.AddControllers()
+                .AddNewtonsoftJson(config =>
                 {
                     // Allow camel casing in JSON property names
                     config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -37,7 +35,7 @@ namespace Discogs.Api
 
             services.AddSwaggerGen(config =>
             {
-                config.SwaggerDoc("v1", new Info
+                config.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Title = "Discogs.Api",
                     Version = "v1",
@@ -47,7 +45,7 @@ namespace Discogs.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -61,7 +59,16 @@ namespace Discogs.Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Discogs.Api v1");
             });
 
-            app.UseMvc();
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
