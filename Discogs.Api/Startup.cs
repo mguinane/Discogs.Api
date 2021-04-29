@@ -1,6 +1,7 @@
 ﻿using Discogs.Api.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
@@ -27,6 +28,7 @@ namespace Discogs.Api
             services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
 
             services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddJsonOptions(config =>
                 {
                     // Allow camel casing in JSON property names
