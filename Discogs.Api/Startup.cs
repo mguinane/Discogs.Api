@@ -28,7 +28,7 @@ namespace Discogs.Api
             services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
 
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(config =>
                 {
                     // Allow camel casing in JSON property names
