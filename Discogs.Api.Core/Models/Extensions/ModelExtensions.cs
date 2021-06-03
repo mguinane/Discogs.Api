@@ -1,16 +1,15 @@
-﻿using Discogs.Api.Models;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Discogs.Api.Helpers
+namespace Discogs.Api.Core.Models.Extensions
 {
-    public static class ReleaseMapper
+    public static class ModelExtensions
     {
         private const string Separator = ", ";
-        private const string Add = " + ";
-
-        public static string MapArtistDescription(Artist[] artists)
+        private const string Add = " + "; 
+        
+        public static string MapDescription(this Artist[] artists)
         {
             var artistDescription = new StringBuilder();
 
@@ -18,7 +17,7 @@ namespace Discogs.Api.Helpers
             {
                 var name = string.IsNullOrWhiteSpace(artists[index].anv) ? artists[index].name : artists[index].anv;
 
-                artistDescription.Append(StripSuffix(name));
+                artistDescription.Append(name.StripSuffix());
 
                 if (artists.Length > 1 && index < artists.Length - 1)
                 {
@@ -30,15 +29,15 @@ namespace Discogs.Api.Helpers
             return artistDescription.ToString();
         }
 
-        public static string MapLabelDescription(Label[] labels)
+        public static string MapDescription(this Label[] labels)
         {
             return string.Join(Separator, labels.Select(label => StripSuffix(label.name)));
         }
 
-        public static string MapFormatDescription(Format[] formats)
+        public static string MapDescription(this Format[] formats)
         {
             var formatDescription = new StringBuilder();
-            
+
             for (var index = 0; index < formats.Length; index++)
             {
                 formatDescription.Append(formats[index].name);
@@ -57,7 +56,7 @@ namespace Discogs.Api.Helpers
             return formatDescription.ToString();
         }
 
-        private static string StripSuffix(string name)
+        private static string StripSuffix(this string name)
         {
             // Check for and remove artist or label name numbered suffix, for example 'We Love Music (3)' will be 'We Love Music'
 
@@ -67,11 +66,11 @@ namespace Discogs.Api.Helpers
             {
                 var suffixRegEx = new Regex(@"^\(\d+\)");
 
-                var lastWord = words[words.Length - 1];
+                var lastWord = words[^1];
 
                 if (suffixRegEx.IsMatch(lastWord))
                 {
-                    var wordsRemoveLast = words.Take(words.Count() - 1).ToArray();
+                    var wordsRemoveLast = words.Take(words.Length - 1).ToArray();
                     return string.Join(" ", wordsRemoveLast);
                 }
                 else

@@ -1,7 +1,7 @@
-﻿using Discogs.Api.Models;
+﻿using Discogs.Api.Core.Models;
 using System.Text;
 
-namespace Discogs.Api.Helpers
+namespace Discogs.Api.Infrastructure.Repositories.Helpers
 {
     public static class UriHelper
     {
@@ -37,9 +37,8 @@ namespace Discogs.Api.Helpers
             else
                 requestUri.Append("&per_page=50"); // TODO get default page size from config
 
-            if (!string.IsNullOrWhiteSpace(criteria.SortBy))
-                requestUri.Append("&sort=" + criteria.SortBy.ToLower());
-            
+            requestUri.Append("&sort=" + criteria.SortType.ToString()); // TODO SortType is mandatory/optional?
+
             return requestUri.ToString();
         }
 

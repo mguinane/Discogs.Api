@@ -1,4 +1,4 @@
-﻿namespace Discogs.Api.Models
+﻿namespace Discogs.Api.Core.Models
 {
     public class Collection
     {

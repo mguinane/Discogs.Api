@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Discogs.Api.Core\Discogs.Api.Core.csproj" />
+    <ProjectReference Include="..\Discogs.Api.Infrastructure\Discogs.Api.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

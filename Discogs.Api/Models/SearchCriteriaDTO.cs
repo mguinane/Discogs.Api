@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Discogs.Api.Models
 {
-    public class SearchCriteria
+    public class SearchCriteriaDTO
     {
         //TODO add validation for page, pagesize?
         //TODO see here https://odetocode.com/blogs/scott/archive/2018/02/27/model-binding-in-get-requests.aspx

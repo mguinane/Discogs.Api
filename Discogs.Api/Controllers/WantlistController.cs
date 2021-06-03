@@ -1,50 +1,50 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Discogs.Api.Data;
-using System.Linq;
-using Discogs.Api.ViewModels;
-using Discogs.Api.Helpers;
-using System.Threading.Tasks;
-using Discogs.Api.Filters;
+﻿using AutoMapper;
+using Discogs.Api.Core.Models;
+using Discogs.Api.Core.Models.Extensions;
+using Discogs.Api.Core.Repositories;
 using Discogs.Api.Models;
+using Discogs.Api.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Discogs.Api.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
-    [ValidateModel]
-    public class WantlistController : ControllerBase
+    public class WantlistController : BaseController
     {
         private readonly IDiscogsRepository _repository;
+        private readonly IMapper _mapper;
         private readonly ILogger<WantlistController> _logger;
 
-        public WantlistController(IDiscogsRepository repository, ILogger<WantlistController> logger)
+        public WantlistController(IDiscogsRepository repository, IMapper mapper, ILogger<WantlistController> logger)
         {
             _repository = repository;
+            _mapper = mapper;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] SearchCriteria criteria)
+        public async Task<IActionResult> Get([FromQuery] SearchCriteriaDTO criteria)
         {
             try
             {
-                var wantlist = await _repository.GetWantlistAsync(criteria);
+                var wantlist = await _repository.GetWantlistAsync(_mapper.Map<SearchCriteria>(criteria));
 
                 if (wantlist == null) return NotFound("No Wantlist data found for specified criteria.");
 
                 var results = wantlist.wants.Select(r => new ReleaseViewModel
                 {
-                    Artist = ReleaseMapper.MapArtistDescription(r.basic_information.artists),
-                    Label = ReleaseMapper.MapLabelDescription(r.basic_information.labels),
+                    Artist = r.basic_information.artists.MapDescription(),
+                    Label = r.basic_information.labels.MapDescription(),
                     Format = r.basic_information.formats.FirstOrDefault()?.name,
-                    FormatDetail = ReleaseMapper.MapFormatDescription(r.basic_information.formats),
+                    FormatDetail = r.basic_information.formats.MapDescription(),
                     Title = r.basic_information.title,
                     // TODO how to get image for wantlist release?
                     ImageUrl = "img",
                     Year = r.basic_information.year
-                });
+                }).ToList();
 
                 return Ok(results);
             }

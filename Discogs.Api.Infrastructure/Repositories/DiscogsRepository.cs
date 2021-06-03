@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Discogs.Api.Models;
+using Discogs.Api.Core.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using Discogs.Api.Helpers;
+using Discogs.Api.Core.Repositories;
+using Discogs.Api.Infrastructure.Repositories.Helpers;
 
-namespace Discogs.Api.Data
+namespace Discogs.Api.Infrastructure.Repositories
 {
     public class DiscogsRepository : IDiscogsRepository
     {
-        private static readonly HttpClient Client = new HttpClient();
+        private static readonly HttpClient Client = new();
 
         static DiscogsRepository()
         {

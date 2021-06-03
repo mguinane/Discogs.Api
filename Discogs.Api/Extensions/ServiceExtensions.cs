@@ -1,12 +1,8 @@
-﻿using Discogs.Api.Data;
+﻿using Discogs.Api.Core.Repositories;
+using Discogs.Api.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discogs.Api.Extensions
 {
@@ -35,9 +31,14 @@ namespace Discogs.Api.Extensions
                 {
                     Title = "Discogs.Api",
                     Version = "v1",
-                    Description = "ASP.NET Core 2.0 API project to wrap Discogs API"
+                    Description = "ASP.NET Core 5.0 API project to wrap Discogs API"
                 });
             });
+        }
+
+        public static void ConfigureAutoMapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(Startup));
         }
     }
 }

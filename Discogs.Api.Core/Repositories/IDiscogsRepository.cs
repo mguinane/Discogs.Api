@@ -1,7 +1,7 @@
-﻿using Discogs.Api.Models;
+﻿using Discogs.Api.Core.Models;
 using System.Threading.Tasks;
 
-namespace Discogs.Api.Data
+namespace Discogs.Api.Core.Repositories
 {
     public interface IDiscogsRepository
     {
