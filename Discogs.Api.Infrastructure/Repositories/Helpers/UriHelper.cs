@@ -37,7 +37,8 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
             else
                 requestUri.Append("&per_page=50"); // TODO get default page size from config
 
-            requestUri.Append("&sort=" + criteria.SortType.ToString()); // TODO SortType is mandatory/optional?
+            if (!string.IsNullOrWhiteSpace(criteria.SortBy))
+                requestUri.Append("&sort=" + criteria.SortBy);
 
             return requestUri.ToString();
         }

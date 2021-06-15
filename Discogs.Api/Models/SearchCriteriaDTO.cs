@@ -5,12 +5,14 @@ namespace Discogs.Api.Models
 {
     public class SearchCriteriaDTO
     {
-        //TODO add validation for page, pagesize?
-        //TODO see here https://odetocode.com/blogs/scott/archive/2018/02/27/model-binding-in-get-requests.aspx
-        //TODO use fluent validation?
+        public SearchCriteriaDTO()
+        {
+            FolderId = 0;
+            SortBy = SortType.artist.ToString();
+            Page = 1;
+            PageSize = 25;
+        }
 
-        [MinLength(5)]
-        [MaxLength(100)]
         public string Username { get; set; }
 
         public int? FolderId { get; set; }

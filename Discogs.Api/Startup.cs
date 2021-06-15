@@ -26,6 +26,7 @@ namespace Discogs.Api
         {
             services.ConfigureContainer();
             services.ConfigureControllers();
+            services.ConfigureAutoMapper();
             services.ConfigureSwagger();
         }
 

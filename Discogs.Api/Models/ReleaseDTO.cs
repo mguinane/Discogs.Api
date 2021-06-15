@@ -1,6 +1,6 @@
-﻿namespace Discogs.Api.ViewModels
+﻿namespace Discogs.Api.Models
 {
-    public class ReleaseViewModel
+    public class ReleaseDTO
     {
         public string Artist { get; set; }
         public string Title { get; set; }

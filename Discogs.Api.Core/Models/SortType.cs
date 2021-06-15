@@ -2,6 +2,7 @@
 {
     public enum SortType
     {
+        none,
         label,
         artist,
         title,

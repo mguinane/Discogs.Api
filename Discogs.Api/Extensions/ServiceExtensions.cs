@@ -1,8 +1,10 @@
 ﻿using Discogs.Api.Core.Repositories;
 using Discogs.Api.Infrastructure.Repositories;
+using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using System.Reflection;
 
 namespace Discogs.Api.Extensions
 {
@@ -20,6 +22,10 @@ namespace Discogs.Api.Extensions
                 {
                     // Allow camel casing in JSON property names
                     config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                })
+                .AddFluentValidation(config =>
+                {
+                    config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 });
         }
 

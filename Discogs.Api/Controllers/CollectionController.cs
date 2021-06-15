@@ -1,7 +1,6 @@
 ﻿using Discogs.Api.Core.Repositories;
 using Discogs.Api.Core.Models;
 using Discogs.Api.Models;
-using Discogs.Api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -34,7 +33,7 @@ namespace Discogs.Api.Controllers
 
                 if (collection == null) return NotFound("No Collection data found for specified criteria.");
 
-                var results = collection.releases.Select(r => new ReleaseViewModel
+                var results = collection.releases.Select(r => new ReleaseDTO
                 {
                     Artist = r.basic_information.artists.MapDescription(),
                     Label = r.basic_information.labels.MapDescription(),
