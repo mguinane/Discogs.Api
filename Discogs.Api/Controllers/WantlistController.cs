@@ -2,6 +2,7 @@
 using Discogs.Api.Core.Models;
 using Discogs.Api.Core.Models.Extensions;
 using Discogs.Api.Core.Repositories;
+using Discogs.Api.Interfaces;
 using Discogs.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,14 +15,15 @@ namespace Discogs.Api.Controllers
     public class WantlistController : BaseController
     {
         private readonly IDiscogsRepository _repository;
-        private readonly IMapper _mapper;
         private readonly ILogger<WantlistController> _logger;
+        private readonly IMappingService _mappingService;
 
-        public WantlistController(IDiscogsRepository repository, IMapper mapper, ILogger<WantlistController> logger)
+        public WantlistController(IDiscogsRepository repository, ILogger<WantlistController> logger, 
+            IMappingService mappingService)
         {
             _repository = repository;
-            _mapper = mapper;
             _logger = logger;
+            _mappingService = mappingService;
         }
 
         [HttpGet]
@@ -29,23 +31,17 @@ namespace Discogs.Api.Controllers
         {
             try
             {
-                var wantlist = await _repository.GetWantlistAsync(_mapper.Map<SearchCriteria>(criteria));
+                var wantlist = await _repository.GetWantlistAsync(_mappingService.MapSearchCriteriaDTO(criteria));
 
                 if (wantlist == null) return NotFound("No Wantlist data found for specified criteria.");
 
-                var results = wantlist.wants.Select(r => new ReleaseDTO
+                DiscogsDTO result = new()
                 {
-                    Artist = r.basic_information.artists.MapDescription(),
-                    Label = r.basic_information.labels.MapDescription(),
-                    Format = r.basic_information.formats.FirstOrDefault()?.name,
-                    FormatDetail = r.basic_information.formats.MapDescription(),
-                    Title = r.basic_information.title,
-                    // TODO how to get image for wantlist release?
-                    ImageUrl = "img",
-                    Year = r.basic_information.year
-                }).ToList();
+                    Pagination = _mappingService.MapPagination(wantlist.pagination),
+                    Releases = wantlist.wants.Select(r => _mappingService.MapWantlistRelease(r)).ToList()
+                };
 
-                return Ok(results);
+                return Ok(result);
             }
             catch (Exception ex)
             {

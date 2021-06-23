@@ -8,6 +8,9 @@ namespace Discogs.Api.Models
         public MapperProfile()
         {
             CreateMap<SearchCriteriaDTO, SearchCriteria>();
+
+            CreateMap<Pagination, PaginationDTO>()
+                .ForMember(dest => dest.PerPage, opt => opt.MapFrom(src => src.per_page));
         }
     }
 }

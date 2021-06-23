@@ -1,5 +1,7 @@
 ﻿using Discogs.Api.Core.Repositories;
 using Discogs.Api.Infrastructure.Repositories;
+using Discogs.Api.Interfaces;
+using Discogs.Api.Services;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -12,6 +14,7 @@ namespace Discogs.Api.Extensions
     {
         public static void ConfigureContainer(this IServiceCollection services)
         {
+            services.AddSingleton<IMappingService, MappingService>();
             services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
         }
 

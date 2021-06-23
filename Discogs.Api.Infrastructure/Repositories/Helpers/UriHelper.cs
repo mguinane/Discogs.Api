@@ -9,7 +9,7 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
         {
             var requestUri = new StringBuilder();
 
-            // example - users/marcusg/collection/folders/0/releases?sort=artist&page=1&per_page=50
+            // example - users/marcusg/collection/folders/0/releases?sort=artist&page=1&per_page=25
 
             requestUri.Append("users/");
 
@@ -35,7 +35,7 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
             if (criteria.PageSize > 0)           
                 requestUri.Append("&per_page=" + criteria.PageSize.ToString());
             else
-                requestUri.Append("&per_page=50"); // TODO get default page size from config
+                requestUri.Append("&per_page=25");
 
             if (!string.IsNullOrWhiteSpace(criteria.SortBy))
                 requestUri.Append("&sort=" + criteria.SortBy);
@@ -47,7 +47,7 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
         {
             var requestUri = new StringBuilder();
 
-            // example - users/marcusg/wants?page=1&per_page=50
+            // example - users/marcusg/wants?page=1&per_page=25
 
             requestUri.Append("users/");
 
@@ -66,7 +66,7 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
             if (criteria.PageSize > 0)
                 requestUri.Append("&per_page=" + criteria.PageSize.ToString());
             else
-                requestUri.Append("&per_page=50"); // TODO get default page size from config
+                requestUri.Append("&per_page=25");
 
             return requestUri.ToString();
         }

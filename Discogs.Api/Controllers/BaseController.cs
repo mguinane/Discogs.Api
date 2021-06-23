@@ -1,5 +1,4 @@
-﻿using Discogs.Api.Filters;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
 namespace Discogs.Api.Controllers

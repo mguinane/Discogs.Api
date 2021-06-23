@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using Discogs.Api.Core.Repositories;
 using Discogs.Api.Infrastructure.Repositories.Helpers;
+using System.Net.Mime;
 
 namespace Discogs.Api.Infrastructure.Repositories
 {
@@ -18,7 +19,7 @@ namespace Discogs.Api.Infrastructure.Repositories
             // TODO get api url from configuration
             Client.BaseAddress = new Uri("https://api.discogs.com/");
             Client.DefaultRequestHeaders.Accept.Clear();
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
             Client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
         }
 

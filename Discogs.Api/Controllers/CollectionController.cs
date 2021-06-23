@@ -8,20 +8,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Discogs.Api.Core.Models.Extensions;
+using Discogs.Api.Interfaces;
 
 namespace Discogs.Api.Controllers
 {
     public class CollectionController : BaseController
     {
         private readonly IDiscogsRepository _repository;
-        private readonly IMapper _mapper;
         private readonly ILogger<CollectionController> _logger;
+        private readonly IMappingService _mappingService;
 
-        public CollectionController(IDiscogsRepository repository, IMapper mapper, ILogger<CollectionController> logger)
+        public CollectionController(IDiscogsRepository repository, ILogger<CollectionController> logger,
+            IMappingService mappingService)
         {
             _repository = repository;
-            _mapper = mapper;
             _logger = logger;
+            _mappingService = mappingService;
         }
 
         [HttpGet]
@@ -29,22 +31,19 @@ namespace Discogs.Api.Controllers
         {
             try
             {
-                var collection = await _repository.GetCollectionAsync(_mapper.Map<SearchCriteria>(criteria));
+                var collection = await _repository.GetCollectionAsync(_mappingService.MapSearchCriteriaDTO(criteria));
 
                 if (collection == null) return NotFound("No Collection data found for specified criteria.");
 
-                var results = collection.releases.Select(r => new ReleaseDTO
-                {
-                    Artist = r.basic_information.artists.MapDescription(),
-                    Label = r.basic_information.labels.MapDescription(),
-                    Format = r.basic_information.formats.FirstOrDefault()?.name,
-                    FormatDetail = r.basic_information.formats.MapDescription(),
-                    Title = r.basic_information.title,
-                    ImageUrl = r.basic_information.cover_image,
-                    Year = r.basic_information.year
-                }).ToList();
+                // TODO - return next/last urls in pagination ...
 
-                return Ok(results);
+                DiscogsDTO result = new()
+                {
+                    Pagination = _mappingService.MapPagination(collection.pagination),
+                    Releases = collection.releases.Select(r => _mappingService.MapCollectionRelease(r)).ToList()
+                };
+
+                return Ok(result);
             }
             catch (Exception ex)
             {

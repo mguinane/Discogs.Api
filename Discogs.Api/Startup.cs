@@ -17,8 +17,6 @@ namespace Discogs.Api
 
         // TODO how to read appsettings file?
 
-        // TODO add CORS support?
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
