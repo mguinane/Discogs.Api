@@ -1,5 +1,8 @@
-﻿using Discogs.Api.Core.Repositories;
+﻿using Discogs.Api.Controllers;
+using Discogs.Api.Core.Repositories;
+using Discogs.Api.Core.Services.Logging;
 using Discogs.Api.Infrastructure.Repositories;
+using Discogs.Api.Infrastructure.Services.Logging;
 using Discogs.Api.Interfaces;
 using Discogs.Api.Services;
 using FluentValidation.AspNetCore;
@@ -16,6 +19,9 @@ namespace Discogs.Api.Extensions
         {
             services.AddSingleton<IMappingService, MappingService>();
             services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
+
+            services.AddSingleton<ILoggerAdapter<CollectionController>, LoggerAdapter<CollectionController>>();
+            services.AddSingleton<ILoggerAdapter<WantlistController>, LoggerAdapter<WantlistController>>();
         }
 
         public static void ConfigureControllers(this IServiceCollection services)

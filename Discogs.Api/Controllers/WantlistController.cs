@@ -1,13 +1,10 @@
-﻿using AutoMapper;
-using Discogs.Api.Core.Models;
-using Discogs.Api.Core.Models.Extensions;
-using Discogs.Api.Core.Repositories;
+﻿using Discogs.Api.Core.Repositories;
+using Discogs.Api.Core.Services.Logging;
 using Discogs.Api.Interfaces;
 using Discogs.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Discogs.Api.Controllers
@@ -15,10 +12,10 @@ namespace Discogs.Api.Controllers
     public class WantlistController : BaseController
     {
         private readonly IDiscogsRepository _repository;
-        private readonly ILogger<WantlistController> _logger;
+        private readonly ILoggerAdapter<WantlistController> _logger;
         private readonly IMappingService _mappingService;
 
-        public WantlistController(IDiscogsRepository repository, ILogger<WantlistController> logger, 
+        public WantlistController(IDiscogsRepository repository, ILoggerAdapter<WantlistController> logger, 
             IMappingService mappingService)
         {
             _repository = repository;
@@ -31,15 +28,11 @@ namespace Discogs.Api.Controllers
         {
             try
             {
-                var wantlist = await _repository.GetWantlistAsync(_mappingService.MapSearchCriteriaDTO(criteria));
+                var wantlist = await _repository.GetWantlistAsync(_mappingService.MapSearchCriteria(criteria));
 
                 if (wantlist == null) return NotFound("No Wantlist data found for specified criteria.");
 
-                DiscogsDTO result = new()
-                {
-                    Pagination = _mappingService.MapPagination(wantlist.pagination),
-                    Releases = wantlist.wants.Select(r => _mappingService.MapWantlistRelease(r)).ToList()
-                };
+                DiscogsDTO result = _mappingService.MapWantlist(wantlist);
 
                 return Ok(result);
             }

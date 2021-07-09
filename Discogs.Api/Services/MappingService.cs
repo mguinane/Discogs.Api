@@ -13,13 +13,31 @@ namespace Discogs.Api.Services
 
         public MappingService(IMapper mapper) => _mapper = mapper;
 
-        public SearchCriteria MapSearchCriteriaDTO(SearchCriteriaDTO searchCriteria) 
+        public SearchCriteria MapSearchCriteria(SearchCriteriaDTO searchCriteria) 
             => _mapper.Map<SearchCriteria>(searchCriteria);
 
-        public PaginationDTO MapPagination(Pagination pagination) 
+        public DiscogsDTO MapCollection(Collection collection)
+        {
+            return new DiscogsDTO()
+            {
+                Pagination = MapPagination(collection.pagination),
+                Releases = collection.releases.Select(r => MapCollectionRelease(r)).ToList()
+            };
+        }
+
+        public DiscogsDTO MapWantlist(Wantlist wantlist)
+        {
+            return new DiscogsDTO()
+            {
+                Pagination = MapPagination(wantlist.pagination),
+                Releases = wantlist.wants.Select(r => MapWantlistRelease(r)).ToList()
+            };
+        }
+
+        private PaginationDTO MapPagination(Pagination pagination) 
             => _mapper.Map<PaginationDTO>(pagination);
 
-        public ReleaseDTO MapCollectionRelease(Release release)
+        private ReleaseDTO MapCollectionRelease(Release release)
         {
             return new ReleaseDTO
             {
@@ -33,7 +51,7 @@ namespace Discogs.Api.Services
             };
         }
 
-        public ReleaseDTO MapWantlistRelease(Want want)
+        private ReleaseDTO MapWantlistRelease(Want want)
         {
             return new ReleaseDTO
             {
