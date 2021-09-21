@@ -12,22 +12,15 @@ namespace Discogs.Api.Infrastructure.Repositories
 {
     public class DiscogsRepository : IDiscogsRepository
     {
-        private static readonly HttpClient Client = new();
+        private readonly HttpClient _httpClient;
 
-        static DiscogsRepository()
-        {
-            // TODO get api url from configuration
-            Client.BaseAddress = new Uri("https://api.discogs.com/");
-            Client.DefaultRequestHeaders.Accept.Clear();
-            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
-            Client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
-        }
+        public DiscogsRepository(HttpClient httpClient) => _httpClient = httpClient;
 
         public async Task<Collection> GetCollectionAsync(SearchCriteria criteria)
         {
             Collection collection = null;
 
-            var response = await Client.GetAsync(UriHelper.FormatCollectionRequestUri(criteria));
+            var response = await _httpClient.GetAsync(UriHelper.FormatCollectionRequestUri(criteria));
 
             if (response.IsSuccessStatusCode)
             {
@@ -42,7 +35,7 @@ namespace Discogs.Api.Infrastructure.Repositories
         {
             Wantlist wantlist = null;
 
-            var response = await Client.GetAsync(UriHelper.FormatWantlistRequestUri(criteria));
+            var response = await _httpClient.GetAsync(UriHelper.FormatWantlistRequestUri(criteria));
 
             if (response.IsSuccessStatusCode)
             {

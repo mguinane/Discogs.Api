@@ -7,14 +7,9 @@ namespace Discogs.Api.Infrastructure.Services.Logging
     {
         private readonly ILogger<T> _logger;
 
-        public LoggerAdapter(ILogger<T> logger)
-        {
-            _logger = logger;
-        }
+        public LoggerAdapter(ILogger<T> logger) => _logger = logger;
 
-        public void LogError(string message, params object[] args)
-        {
-            _logger.LogError(message, args);
-        }
+        public void LogError(string message, params object[] args) 
+            => _logger.LogError(message, args);
     }
 }

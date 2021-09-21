@@ -9,6 +9,9 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Net.Http.Headers;
+using System.Net.Mime;
 using System.Reflection;
 
 namespace Discogs.Api.Extensions
@@ -54,6 +57,18 @@ namespace Discogs.Api.Extensions
         public static void ConfigureAutoMapper(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+        }
+
+        public static void ConfigureHttpClient(this IServiceCollection services)
+        {
+            services.AddHttpClient<IDiscogsRepository, DiscogsRepository>(client =>
+            {
+                // TODO get api url from configuration
+                client.BaseAddress = new Uri("https://api.discogs.com/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
+                client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
+            });
         }
     }
 }

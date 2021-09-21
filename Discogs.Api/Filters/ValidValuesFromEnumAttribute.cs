@@ -8,10 +8,7 @@ namespace Discogs.Api.Filters
     {
         private readonly Type _enumType;
 
-        public ValidValuesFromEnumAttribute(Type enumType)
-        {
-            _enumType = enumType;
-        }
+        public ValidValuesFromEnumAttribute(Type enumType) => _enumType = enumType;
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
