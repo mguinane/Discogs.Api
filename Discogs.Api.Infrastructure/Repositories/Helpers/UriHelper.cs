@@ -7,7 +7,7 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
     {
         public static string FormatCollectionRequestUri(SearchCriteria criteria)
         {
-            var requestUri = new StringBuilder();
+            StringBuilder requestUri = new();
 
             // example - users/marcusg/collection/folders/0/releases?sort=artist&page=1&per_page=25
 
@@ -45,13 +45,13 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
 
         public static string FormatWantlistRequestUri(SearchCriteria criteria)
         {
-            var requestUri = new StringBuilder();
+            StringBuilder requestUri = new();
 
             // example - users/marcusg/wants?page=1&per_page=25
 
             requestUri.Append("users/");
 
-            if (!string.IsNullOrWhiteSpace(criteria.Username.ToLower()))
+            if (!string.IsNullOrWhiteSpace(criteria.Username))
                 requestUri.Append(criteria.Username + "/");
             else
                 requestUri.Append("marcusg/");

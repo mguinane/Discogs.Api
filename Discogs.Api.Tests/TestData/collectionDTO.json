@@ -1,0 +1,102 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 436,
+    "perPage": 10,
+    "items": 4356,
+    "nextUrl": null,
+    "lastUrl": null
+  },
+  "releases": [
+    {
+      "artist": "Omid16B",
+      "title": " Sequential 003",
+      "label": "Sex On Wax",
+      "format": "File",
+      "formatDetail": "File, MP3",
+      "imageUrl": "",
+      "year": 2009
+    },
+    {
+      "artist": "Omid16B",
+      "title": "Like 3 Ears And 1 Eye",
+      "label": "Sex On Wax, DJ Magazine",
+      "format": "CD",
+      "formatDetail": "CD, Album",
+      "imageUrl": "",
+      "year": 2007
+    },
+    {
+      "artist": "16B",
+      "title": "Sounds From Another Room",
+      "label": "Eye Q Records",
+      "format": "CD",
+      "formatDetail": "CD, Album",
+      "imageUrl": "",
+      "year": 1998
+    },
+    {
+      "artist": "187 Lockdown",
+      "title": "Sunday Flavaz Volume One",
+      "label": "Logic Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed + CD, Compilation",
+      "imageUrl": "",
+      "year": 1997
+    },
+    {
+      "artist": "2 AM/FM",
+      "title": "Desolate Cities",
+      "label": "M>O>S Recordings",
+      "format": "File",
+      "formatDetail": "File, FLAC",
+      "imageUrl": "",
+      "year": 2010
+    },
+    {
+      "artist": "23 Skidoo",
+      "title": "Seven Songs",
+      "label": "Ronin Records",
+      "format": "CD",
+      "formatDetail": "CD, Album",
+      "imageUrl": "",
+      "year": 2001
+    },
+    {
+      "artist": "3 Generations Walking",
+      "title": "3 Generations Walking",
+      "label": "Spiritual Life Music",
+      "format": "CD",
+      "formatDetail": "CD, Album",
+      "imageUrl": "",
+      "year": 2003
+    },
+    {
+      "artist": "51717",
+      "title": "0VUL",
+      "label": "Opal Tapes",
+      "format": "File",
+      "formatDetail": "File, MP3",
+      "imageUrl": "",
+      "year": 2012
+    },
+    {
+      "artist": "69",
+      "title": "The Sound Of Music",
+      "label": "R & S Records",
+      "format": "CD",
+      "formatDetail": "CD, Album",
+      "imageUrl": "",
+      "year": 1995
+    },
+    {
+      "artist": "AFMB",
+      "title": "Back Up Days",
+      "label": "Drumpoet Community",
+      "format": "Vinyl",
+      "formatDetail": "Vinyl, 12\"",
+      "imageUrl": "",
+      "year": 2010
+    }
+  ]
+}

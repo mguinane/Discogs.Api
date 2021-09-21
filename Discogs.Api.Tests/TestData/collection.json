@@ -1,0 +1,569 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 436,
+    "per_page": 10,
+    "items": 4356,
+    "urls": {
+      "last": "https://api.discogs.com/users/marcusg/collection/folders/0/releases?per_page=10&sort=artist&page=436",
+      "next": "https://api.discogs.com/users/marcusg/collection/folders/0/releases?per_page=10&sort=artist&page=2"
+    }
+  },
+  "releases": [
+    {
+      "id": 13677368,
+      "instance_id": 412463397,
+      "date_added": "2019-11-03T19:01:41-08:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 13677368,
+        "master_id": 0,
+        "master_url": null,
+        "resource_url": "https://api.discogs.com/releases/13677368",
+        "thumb": "",
+        "cover_image": "",
+        "title": " Sequential 003",
+        "year": 2009,
+        "formats": [
+          {
+            "name": "File",
+            "qty": "2",
+            "text": "320 kbps",
+            "descriptions": [
+              "MP3"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Sex On Wax",
+            "catno": "SEX026",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 8512,
+            "resource_url": "https://api.discogs.com/labels/8512"
+          }
+        ],
+        "artists": [
+          {
+            "name": "16B",
+            "anv": "Omid16B",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 2046,
+            "resource_url": "https://api.discogs.com/artists/2046"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Progressive House"
+        ]
+      }
+    },
+    {
+      "id": 1153274,
+      "instance_id": 207589627,
+      "date_added": "2017-01-13T18:39:58-08:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 1153274,
+        "master_id": 0,
+        "master_url": null,
+        "resource_url": "https://api.discogs.com/releases/1153274",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Like 3 Ears And 1 Eye",
+        "year": 2007,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Album",
+              "Limited Edition"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Sex On Wax",
+            "catno": "SEX002A",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 8512,
+            "resource_url": "https://api.discogs.com/labels/8512"
+          },
+          {
+            "name": "DJ Magazine",
+            "catno": "2543",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 9321,
+            "resource_url": "https://api.discogs.com/labels/9321"
+          }
+        ],
+        "artists": [
+          {
+            "name": "16B",
+            "anv": "Omid16B",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 2046,
+            "resource_url": "https://api.discogs.com/artists/2046"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Progressive House",
+          "Deep House",
+          "Tech House"
+        ]
+      }
+    },
+    {
+      "id": 11954,
+      "instance_id": 124554064,
+      "date_added": "2015-03-22T10:04:24-07:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 11954,
+        "master_id": 67779,
+        "master_url": "https://api.discogs.com/masters/67779",
+        "resource_url": "https://api.discogs.com/releases/11954",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Sounds From Another Room",
+        "year": 1998,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Album"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Eye Q Records",
+            "catno": "EYEUKCD016",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 687,
+            "resource_url": "https://api.discogs.com/labels/687"
+          }
+        ],
+        "artists": [
+          {
+            "name": "16B",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 2046,
+            "resource_url": "https://api.discogs.com/artists/2046"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Future Jazz",
+          "Deep House",
+          "Tech House"
+        ]
+      }
+    },
+    {
+      "id": 585980,
+      "instance_id": 142345150,
+      "date_added": "2015-09-29T19:58:19-07:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 585980,
+        "master_id": 7967,
+        "master_url": "https://api.discogs.com/masters/7967",
+        "resource_url": "https://api.discogs.com/releases/585980",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Sunday Flavaz Volume One",
+        "year": 1997,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed"
+            ]
+          },
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Compilation"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Logic Records",
+            "catno": "74321 53880 2",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 930,
+            "resource_url": "https://api.discogs.com/labels/930"
+          }
+        ],
+        "artists": [
+          {
+            "name": "187 Lockdown",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 9733,
+            "resource_url": "https://api.discogs.com/artists/9733"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "UK Garage"
+        ]
+      }
+    },
+    {
+      "id": 2535493,
+      "instance_id": 493699817,
+      "date_added": "2020-07-29T21:01:37-07:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 2535493,
+        "master_id": 286404,
+        "master_url": "https://api.discogs.com/masters/286404",
+        "resource_url": "https://api.discogs.com/releases/2535493",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Desolate Cities",
+        "year": 2010,
+        "formats": [
+          {
+            "name": "File",
+            "qty": "2",
+            "descriptions": [
+              "FLAC"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "M>O>S Recordings",
+            "catno": "MOSDEEP004",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 18342,
+            "resource_url": "https://api.discogs.com/labels/18342"
+          }
+        ],
+        "artists": [
+          {
+            "name": "2 AM/FM",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 391970,
+            "resource_url": "https://api.discogs.com/artists/391970"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Acid House",
+          "House"
+        ]
+      }
+    },
+    {
+      "id": 60270,
+      "instance_id": 303358479,
+      "date_added": "2018-06-07T09:17:24-07:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 60270,
+        "master_id": 54701,
+        "master_url": "https://api.discogs.com/masters/54701",
+        "resource_url": "https://api.discogs.com/releases/60270",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Seven Songs",
+        "year": 2001,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Album",
+              "Reissue"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Ronin Records",
+            "catno": "RDCD 4",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 3465,
+            "resource_url": "https://api.discogs.com/labels/3465"
+          }
+        ],
+        "artists": [
+          {
+            "name": "23 Skidoo",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 21148,
+            "resource_url": "https://api.discogs.com/artists/21148"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Tribal",
+          "Industrial",
+          "Experimental"
+        ]
+      }
+    },
+    {
+      "id": 108888,
+      "instance_id": 134085432,
+      "date_added": "2015-07-03T11:59:58-07:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 108888,
+        "master_id": 109421,
+        "master_url": "https://api.discogs.com/masters/109421",
+        "resource_url": "https://api.discogs.com/releases/108888",
+        "thumb": "",
+        "cover_image": "",
+        "title": "3 Generations Walking",
+        "year": 2003,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Album"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Spiritual Life Music",
+            "catno": "SLMCD-362",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 722,
+            "resource_url": "https://api.discogs.com/labels/722"
+          }
+        ],
+        "artists": [
+          {
+            "name": "3 Generations Walking",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 7603,
+            "resource_url": "https://api.discogs.com/artists/7603"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Deep House",
+          "Dub",
+          "Future Jazz",
+          "Downtempo",
+          "Latin"
+        ]
+      }
+    },
+    {
+      "id": 5150851,
+      "instance_id": 120610014,
+      "date_added": "2015-02-09T16:32:07-08:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 5150851,
+        "master_id": 625681,
+        "master_url": "https://api.discogs.com/masters/625681",
+        "resource_url": "https://api.discogs.com/releases/5150851",
+        "thumb": "",
+        "cover_image": "",
+        "title": "0VUL",
+        "year": 2012,
+        "formats": [
+          {
+            "name": "File",
+            "qty": "6",
+            "text": "320 kbps",
+            "descriptions": [
+              "MP3",
+              "EP"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Opal Tapes",
+            "catno": "OPAL007",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 415064,
+            "resource_url": "https://api.discogs.com/labels/415064"
+          }
+        ],
+        "artists": [
+          {
+            "name": "51717",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1534461,
+            "resource_url": "https://api.discogs.com/artists/1534461"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Abstract",
+          "Techno",
+          "Experimental"
+        ]
+      }
+    },
+    {
+      "id": 12424,
+      "instance_id": 279695213,
+      "date_added": "2018-02-12T22:55:08-08:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 12424,
+        "master_id": 25496,
+        "master_url": "https://api.discogs.com/masters/25496",
+        "resource_url": "https://api.discogs.com/releases/12424",
+        "thumb": "",
+        "cover_image": "",
+        "title": "The Sound Of Music",
+        "year": 1995,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Album",
+              "Compilation"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "R & S Records",
+            "catno": "RS 95078 CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 245,
+            "resource_url": "https://api.discogs.com/labels/245"
+          }
+        ],
+        "artists": [
+          {
+            "name": "69",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 3287,
+            "resource_url": "https://api.discogs.com/artists/3287"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Techno"
+        ]
+      }
+    },
+    {
+      "id": 2570251,
+      "instance_id": 111229939,
+      "date_added": "2014-10-23T17:40:50-07:00",
+      "rating": 0,
+      "basic_information": {
+        "id": 2570251,
+        "master_id": 0,
+        "master_url": null,
+        "resource_url": "https://api.discogs.com/releases/2570251",
+        "thumb": "",
+        "cover_image": "",
+        "title": "Back Up Days",
+        "year": 2010,
+        "formats": [
+          {
+            "name": "Vinyl",
+            "qty": "1",
+            "descriptions": [
+              "12\"",
+              "45 RPM"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "Drumpoet Community",
+            "catno": "dpc_034-1",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 69765,
+            "resource_url": "https://api.discogs.com/labels/69765"
+          }
+        ],
+        "artists": [
+          {
+            "name": "A Forest Mighty Black",
+            "anv": "AFMB",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1855,
+            "resource_url": "https://api.discogs.com/artists/1855"
+          }
+        ],
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Deep House"
+        ]
+      }
+    }
+  ]
+}

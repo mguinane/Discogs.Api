@@ -1,0 +1,102 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 561,
+    "perPage": 10,
+    "items": 5605,
+    "nextUrl": null,
+    "lastUrl": null
+  },
+  "releases": [
+    {
+      "artist": "Various",
+      "title": "Tranceworld - Underwater Sunlight",
+      "label": "!Hype",
+      "format": "CD",
+      "formatDetail": "CD, Compilation",
+      "imageUrl": "img",
+      "year": 1992
+    },
+    {
+      "artist": "Beth Hirsch",
+      "title": "Early Days",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Album",
+      "imageUrl": "img",
+      "year": 2000
+    },
+    {
+      "artist": "Erlend Øye",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2004
+    },
+    {
+      "artist": "Booka Shade",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2007
+    },
+    {
+      "artist": "Hercules And Love Affair",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2012
+    },
+    {
+      "artist": "Maceo Plex",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2013
+    },
+    {
+      "artist": "John Talabot",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2013
+    },
+    {
+      "artist": "DJ Koze",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2015
+    },
+    {
+      "artist": "Moodymann",
+      "title": "DJ-Kicks",
+      "label": "!K7 Records",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 2016
+    },
+    {
+      "artist": "Richie Hawtin & John Acquaviva",
+      "title": "X-Mix-3 - Enter: Digital Reality!",
+      "label": "!K7, !K7",
+      "format": "CD",
+      "formatDetail": "CD, Mixed",
+      "imageUrl": "img",
+      "year": 1994
+    }
+  ]
+}

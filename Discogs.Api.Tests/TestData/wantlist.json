@@ -1,0 +1,591 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 561,
+    "per_page": 10,
+    "items": 5605,
+    "urls": {
+      "last": "https://api.discogs.com/users/marcusg/wants?page=561&per_page=10",
+      "next": "https://api.discogs.com/users/marcusg/wants?page=2&per_page=10"
+    }
+  },
+  "wants": [
+    {
+      "id": 109670,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/109670",
+      "rating": 0,
+      "date_added": "2019-07-23T05:18:01-07:00",
+      "basic_information": {
+        "id": 109670,
+        "master_id": 1143359,
+        "master_url": "https://api.discogs.com/masters/1143359",
+        "resource_url": "https://api.discogs.com/releases/109670",
+        "title": "Tranceworld - Underwater Sunlight",
+        "year": 1992,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "2",
+            "descriptions": [
+              "Compilation"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!Hype",
+            "catno": "DCD 90 3154 2",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 5039,
+            "resource_url": "https://api.discogs.com/labels/5039"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Various",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 194,
+            "resource_url": ""
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Trance",
+          "Techno",
+          "Ambient"
+        ]
+      }
+    },
+    {
+      "id": 40560,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/40560",
+      "rating": 0,
+      "date_added": "2019-05-03T04:41:21-07:00",
+      "basic_information": {
+        "id": 40560,
+        "master_id": 121841,
+        "master_url": "https://api.discogs.com/masters/121841",
+        "resource_url": "https://api.discogs.com/releases/40560",
+        "title": "Early Days",
+        "year": 2000,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "text": "Digipak",
+            "descriptions": [
+              "Album",
+              "Stereo"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "!K7091CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Beth Hirsch",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 14920,
+            "resource_url": "https://api.discogs.com/artists/14920"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Rock",
+          "Pop",
+          "Folk, World, & Country"
+        ],
+        "styles": [
+          "Folk Rock",
+          "Folk"
+        ]
+      }
+    },
+    {
+      "id": 247442,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/247442",
+      "rating": 0,
+      "date_added": "2016-02-13T04:00:10-08:00",
+      "basic_information": {
+        "id": 247442,
+        "master_id": 71208,
+        "master_url": "https://api.discogs.com/masters/71208",
+        "resource_url": "https://api.discogs.com/releases/247442",
+        "title": "DJ-Kicks",
+        "year": 2004,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "!K7161CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Erlend Øye",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 82343,
+            "resource_url": "https://api.discogs.com/artists/82343"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "House",
+          "Electro",
+          "Tech House"
+        ]
+      }
+    },
+    {
+      "id": 1146391,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/1146391",
+      "rating": 0,
+      "date_added": "2016-02-13T03:58:22-08:00",
+      "basic_information": {
+        "id": 1146391,
+        "master_id": 47288,
+        "master_url": "https://api.discogs.com/masters/47288",
+        "resource_url": "https://api.discogs.com/releases/1146391",
+        "title": "DJ-Kicks",
+        "year": 2007,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed",
+              "Compilation"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "!K7222CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Booka Shade",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 16768,
+            "resource_url": "https://api.discogs.com/artists/16768"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic",
+          "Hip Hop",
+          "Rock",
+          "Pop",
+          "Stage & Screen"
+        ],
+        "styles": [
+          "Synth-pop",
+          "Disco",
+          "Trip Hop",
+          "Chanson",
+          "IDM",
+          "UK Garage",
+          "Minimal",
+          "Indie Rock",
+          "Soundtrack",
+          "Experimental"
+        ]
+      }
+    },
+    {
+      "id": 4064488,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/4064488",
+      "rating": 0,
+      "date_added": "2016-02-13T03:54:10-08:00",
+      "basic_information": {
+        "id": 4064488,
+        "master_id": 500786,
+        "master_url": "https://api.discogs.com/masters/500786",
+        "resource_url": "https://api.discogs.com/releases/4064488",
+        "title": "DJ-Kicks",
+        "year": 2012,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "K7301CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Hercules & Love Affair",
+            "anv": "Hercules And Love Affair",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 904910,
+            "resource_url": "https://api.discogs.com/artists/904910"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "House",
+          "Deep House"
+        ]
+      }
+    },
+    {
+      "id": 4567941,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/4567941",
+      "rating": 0,
+      "date_added": "2016-02-13T03:54:42-08:00",
+      "basic_information": {
+        "id": 4567941,
+        "master_id": 564956,
+        "master_url": "https://api.discogs.com/masters/564956",
+        "resource_url": "https://api.discogs.com/releases/4567941",
+        "title": "DJ-Kicks",
+        "year": 2013,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "K7306CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Maceo Plex",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1626911,
+            "resource_url": "https://api.discogs.com/artists/1626911"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "House",
+          "Techno"
+        ]
+      }
+    },
+    {
+      "id": 5133283,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/5133283",
+      "rating": 0,
+      "date_added": "2016-02-13T03:55:02-08:00",
+      "basic_information": {
+        "id": 5133283,
+        "master_id": 623653,
+        "master_url": "https://api.discogs.com/masters/623653",
+        "resource_url": "https://api.discogs.com/releases/5133283",
+        "title": "DJ-Kicks",
+        "year": 2013,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "text": "Jewel Case",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "K7312CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "John Talabot",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1377987,
+            "resource_url": "https://api.discogs.com/artists/1377987"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "House",
+          "Leftfield",
+          "Disco"
+        ]
+      }
+    },
+    {
+      "id": 7116833,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/7116833",
+      "rating": 0,
+      "date_added": "2016-02-13T03:56:55-08:00",
+      "basic_information": {
+        "id": 7116833,
+        "master_id": 847561,
+        "master_url": "https://api.discogs.com/masters/847561",
+        "resource_url": "https://api.discogs.com/releases/7116833",
+        "title": "DJ-Kicks",
+        "year": 2015,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "text": "Digipak",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "K7325CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "DJ Koze",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 8260,
+            "resource_url": "https://api.discogs.com/artists/8260"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic",
+          "Hip Hop",
+          "Rock"
+        ],
+        "styles": [
+          "Indie Rock",
+          "Leftfield",
+          "House",
+          "Downtempo"
+        ]
+      }
+    },
+    {
+      "id": 8142256,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/8142256",
+      "rating": 0,
+      "date_added": "2016-02-22T04:53:10-08:00",
+      "basic_information": {
+        "id": 8142256,
+        "master_id": 961089,
+        "master_url": "https://api.discogs.com/masters/961089",
+        "resource_url": "https://api.discogs.com/releases/8142256",
+        "title": "DJ-Kicks",
+        "year": 2016,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7 Records",
+            "catno": "K7327CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 29377,
+            "resource_url": "https://api.discogs.com/labels/29377"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Moodymann",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1094,
+            "resource_url": "https://api.discogs.com/artists/1094"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic",
+          "Hip Hop",
+          "Funk / Soul"
+        ],
+        "styles": [
+          "Soul",
+          "Downtempo",
+          "House",
+          "Deep House"
+        ]
+      }
+    },
+    {
+      "id": 2863,
+      "resource_url": "https://api.discogs.com/users/marcusg/wants/2863",
+      "rating": 0,
+      "date_added": "2019-05-13T04:32:22-07:00",
+      "basic_information": {
+        "id": 2863,
+        "master_id": 21389,
+        "master_url": "https://api.discogs.com/masters/21389",
+        "resource_url": "https://api.discogs.com/releases/2863",
+        "title": "X-Mix-3 - Enter: Digital Reality!",
+        "year": 1994,
+        "formats": [
+          {
+            "name": "CD",
+            "qty": "1",
+            "descriptions": [
+              "Mixed"
+            ]
+          }
+        ],
+        "labels": [
+          {
+            "name": "!K7",
+            "catno": "!K7032CD",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 30192,
+            "resource_url": "https://api.discogs.com/labels/30192"
+          },
+          {
+            "name": "!K7",
+            "catno": "k7032cd",
+            "entity_type": "1",
+            "entity_type_name": "Label",
+            "id": 30192,
+            "resource_url": "https://api.discogs.com/labels/30192"
+          }
+        ],
+        "artists": [
+          {
+            "name": "Richie Hawtin",
+            "anv": "",
+            "join": "&",
+            "role": "",
+            "tracks": "",
+            "id": 835,
+            "resource_url": "https://api.discogs.com/artists/835"
+          },
+          {
+            "name": "John Acquaviva",
+            "anv": "",
+            "join": "",
+            "role": "",
+            "tracks": "",
+            "id": 1233,
+            "resource_url": "https://api.discogs.com/artists/1233"
+          }
+        ],
+        "thumb": "",
+        "cover_image": "",
+        "genres": [
+          "Electronic"
+        ],
+        "styles": [
+          "Acid House",
+          "Techno"
+        ]
+      }
+    }
+  ]
+}
