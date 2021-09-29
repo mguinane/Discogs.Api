@@ -11,34 +11,23 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
 
             // example - users/marcusg/collection/folders/0/releases?sort=artist&page=1&per_page=25
 
-            requestUri.Append("users/");
-
-            if (!string.IsNullOrWhiteSpace(criteria.Username))
-                requestUri.Append(criteria.Username.ToLower() + "/");
-            else
-                requestUri.Append("marcusg/");
-
-            requestUri.Append("collection/folders/");
+            requestUri.Append($"users/{criteria.Username.ToLower()}/collection/folders/");
 
             if (criteria.FolderId > 0)
-                requestUri.Append(criteria.FolderId.ToString() + "/");
+                requestUri.Append($"{criteria.FolderId}/");
             else
                 requestUri.Append("0/");
 
             requestUri.Append("releases?");
 
             if (criteria.Page > 0)
-                requestUri.Append("page=" + criteria.Page.ToString());
-            else
-                requestUri.Append("page=1");
+                requestUri.Append($"page={criteria.Page}");
 
             if (criteria.PageSize > 0)           
-                requestUri.Append("&per_page=" + criteria.PageSize.ToString());
-            else
-                requestUri.Append("&per_page=25");
+                requestUri.Append($"&per_page={criteria.PageSize}");
 
             if (!string.IsNullOrWhiteSpace(criteria.SortBy))
-                requestUri.Append("&sort=" + criteria.SortBy);
+                requestUri.Append($"&sort={criteria.SortBy}");
 
             return requestUri.ToString();
         }
@@ -49,24 +38,13 @@ namespace Discogs.Api.Infrastructure.Repositories.Helpers
 
             // example - users/marcusg/wants?page=1&per_page=25
 
-            requestUri.Append("users/");
-
-            if (!string.IsNullOrWhiteSpace(criteria.Username))
-                requestUri.Append(criteria.Username + "/");
-            else
-                requestUri.Append("marcusg/");
-
-            requestUri.Append("wants?");
+            requestUri.Append($"users/{criteria.Username.ToLower()}/wants?");
 
             if (criteria.Page > 0)
-                requestUri.Append("page=" + criteria.Page.ToString());
-            else
-                requestUri.Append("page=1");
+                requestUri.Append($"page={criteria.Page}");
 
             if (criteria.PageSize > 0)
-                requestUri.Append("&per_page=" + criteria.PageSize.ToString());
-            else
-                requestUri.Append("&per_page=25");
+                requestUri.Append($"&per_page={criteria.PageSize}");
 
             return requestUri.ToString();
         }

@@ -3,6 +3,7 @@ using Discogs.Api.Core.Models;
 using Discogs.Api.Core.Models.Extensions;
 using Discogs.Api.Interfaces;
 using Discogs.Api.Models;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 
 namespace Discogs.Api.Services
@@ -10,11 +11,21 @@ namespace Discogs.Api.Services
     public class MappingService : IMappingService
     {
         private readonly IMapper _mapper;
+        private readonly IConfiguration Configuration;
 
-        public MappingService(IMapper mapper) => _mapper = mapper;
+        public MappingService(IMapper mapper, IConfiguration configuration)
+        {
+            _mapper = mapper;
+            Configuration = configuration;
+        }
 
-        public SearchCriteria MapSearchCriteria(SearchCriteriaDTO searchCriteria) 
-            => _mapper.Map<SearchCriteria>(searchCriteria);
+        public SearchCriteria MapSearchCriteria(SearchCriteriaDTO searchCriteriaDTO)
+        {
+            var searchCriteria = _mapper.Map<SearchCriteria>(searchCriteriaDTO);
+            if (string.IsNullOrWhiteSpace(searchCriteria.Username))
+                searchCriteria.Username = Configuration["Discogs:Username"];
+            return searchCriteria;
+        }
 
         public DiscogsDTO MapCollection(Collection collection)
         {

@@ -15,8 +15,6 @@ namespace Discogs.Api
             Configuration = configuration;
         }
 
-        // TODO how to read appsettings file?
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -25,8 +23,8 @@ namespace Discogs.Api
             services.ConfigureContainer();
             services.ConfigureControllers();
             services.ConfigureAutoMapper();
-            services.ConfigureHttpClient();
-            services.ConfigureSwagger();
+            services.ConfigureHttpClient(Configuration);
+            services.ConfigureSwagger(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

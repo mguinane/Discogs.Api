@@ -6,6 +6,7 @@ using Discogs.Api.Infrastructure.Services.Logging;
 using Discogs.Api.Interfaces;
 using Discogs.Api.Services;
 using FluentValidation.AspNetCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
@@ -41,15 +42,15 @@ namespace Discogs.Api.Extensions
                 });
         }
 
-        public static void ConfigureSwagger(this IServiceCollection services)
+        public static void ConfigureSwagger(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(config =>
             {
                 config.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "Discogs.Api",
-                    Version = "v1",
-                    Description = "ASP.NET Core 5.0 API project to wrap Discogs API"
+                    Title = configuration["Swagger:Title"],
+                    Version = configuration["Swagger:Version"],
+                    Description = configuration["Swagger:Description"]
                 });
             });
         }
@@ -59,12 +60,11 @@ namespace Discogs.Api.Extensions
             services.AddAutoMapper(typeof(Startup));
         }
 
-        public static void ConfigureHttpClient(this IServiceCollection services)
+        public static void ConfigureHttpClient(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient<IDiscogsRepository, DiscogsRepository>(client =>
             {
-                // TODO get api url from configuration
-                client.BaseAddress = new Uri("https://api.discogs.com/");
+                client.BaseAddress = new Uri(configuration["Discogs:UrlRoot"]);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
                 client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");

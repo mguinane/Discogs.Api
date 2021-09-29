@@ -4,6 +4,8 @@ using Discogs.Api.Models;
 using Discogs.Api.Services;
 using Discogs.Api.Tests.TestHelpers;
 using FluentAssertions;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Discogs.Api.Tests.Services
@@ -12,6 +14,7 @@ namespace Discogs.Api.Tests.Services
     {
         private MappingService _mappingService;
         private static IMapper _mapper;
+        private static IConfiguration _configuration;
 
         private readonly Collection _collection;
         private readonly Wantlist _wantlist;
@@ -28,7 +31,17 @@ namespace Discogs.Api.Tests.Services
                 _mapper = mapper;
             }
 
-            _mappingService = new(_mapper);
+            if (_configuration == null)
+            {
+                Dictionary<string, string> configuration = new()
+                {
+                    { "Discogs:Username", "marcusg" }
+                };
+
+                _configuration = new ConfigurationBuilder().AddInMemoryCollection(configuration).Build();
+            }
+
+            _mappingService = new(_mapper, _configuration);
 
             _collection = FakeDataHelper.DeserializeFromJsonFile<Collection>("collection");
             _wantlist = FakeDataHelper.DeserializeFromJsonFile<Wantlist>("wantlist");
