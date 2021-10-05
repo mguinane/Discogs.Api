@@ -4,6 +4,7 @@ using Discogs.Api.Models;
 using Discogs.Api.Services;
 using Discogs.Api.Tests.TestHelpers;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using Xunit;
@@ -62,8 +63,11 @@ namespace Discogs.Api.Tests.Services
         {
             var discogsDTO = _mappingService.MapCollection(_collection);
 
-            discogsDTO.Pagination.Pages.Should().Be(_collection.pagination.pages);
-            discogsDTO.Releases.Should().HaveCount(c => c == _collection.releases.Length);
+            using (new AssertionScope())
+            {
+                discogsDTO.Pagination.Pages.Should().Be(_collection.pagination.pages);
+                discogsDTO.Releases.Should().HaveCount(c => c == _collection.releases.Length);
+            }
         }
 
         [Fact]
@@ -71,8 +75,11 @@ namespace Discogs.Api.Tests.Services
         {
             var discogsDTO = _mappingService.MapWantlist(_wantlist);
 
-            discogsDTO.Pagination.Pages.Should().Be(_wantlist.pagination.pages);
-            discogsDTO.Releases.Should().HaveCount(c => c == _wantlist.wants.Length);
+            using (new AssertionScope())
+            {
+                discogsDTO.Pagination.Pages.Should().Be(_wantlist.pagination.pages);
+                discogsDTO.Releases.Should().HaveCount(c => c == _wantlist.wants.Length);
+            }
         }
     }
 }
