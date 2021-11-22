@@ -2,27 +2,26 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Discogs.Api.Filters
+namespace Discogs.Api.Filters;
+
+public class ValidValuesFromEnumAttribute : ValidationAttribute
 {
-    public class ValidValuesFromEnumAttribute : ValidationAttribute
+    private readonly Type _enumType;
+
+    public ValidValuesFromEnumAttribute(Type enumType) => _enumType = enumType;
+
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
-        private readonly Type _enumType;
-
-        public ValidValuesFromEnumAttribute(Type enumType) => _enumType = enumType;
-
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        if (value != null)
         {
-            if (value != null)
+            var valueString = value.ToString().ToLower();
+
+            if (!Enum.GetNames(_enumType).Contains(valueString))
             {
-                var valueString = value.ToString().ToLower();
-
-                if (!Enum.GetNames(_enumType).Contains(valueString))
-                {
-                    return new ValidationResult($"Invalid {_enumType.Name} value.");
-                }
-
+                return new ValidationResult($"Invalid {_enumType.Name} value.");
             }
-            return ValidationResult.Success;
+
         }
+        return ValidationResult.Success;
     }
 }

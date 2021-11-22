@@ -1,8 +1,7 @@
-﻿namespace Discogs.Api.Core.Models
+﻿namespace Discogs.Api.Core.Models;
+
+public class Collection
 {
-    public class Collection
-    {
-        public Pagination pagination { get; set; }
-        public Release[] releases { get; set; }
-    }
+    public Pagination pagination { get; set; }
+    public Release[] releases { get; set; }
 }

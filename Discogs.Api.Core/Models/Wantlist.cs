@@ -1,8 +1,7 @@
-﻿namespace Discogs.Api.Core.Models
+﻿namespace Discogs.Api.Core.Models;
+
+public class Wantlist
 {
-    public class Wantlist
-    {
-        public Want[] wants { get; set; }
-        public Pagination pagination { get; set; }
-    }
+    public Want[] wants { get; set; }
+    public Pagination pagination { get; set; }
 }

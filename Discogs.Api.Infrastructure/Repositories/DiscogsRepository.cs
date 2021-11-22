@@ -1,49 +1,45 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Discogs.Api.Core.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using Discogs.Api.Core.Repositories;
 using Discogs.Api.Infrastructure.Repositories.Helpers;
-using System.Net.Mime;
 
-namespace Discogs.Api.Infrastructure.Repositories
+namespace Discogs.Api.Infrastructure.Repositories;
+
+public class DiscogsRepository : IDiscogsRepository
 {
-    public class DiscogsRepository : IDiscogsRepository
+    private readonly HttpClient _httpClient;
+
+    public DiscogsRepository(HttpClient httpClient) => _httpClient = httpClient;
+
+    public async Task<Collection> GetCollectionAsync(SearchCriteria criteria)
     {
-        private readonly HttpClient _httpClient;
+        Collection collection = null;
 
-        public DiscogsRepository(HttpClient httpClient) => _httpClient = httpClient;
+        var response = await _httpClient.GetAsync(UriHelper.FormatCollectionRequestUri(criteria));
 
-        public async Task<Collection> GetCollectionAsync(SearchCriteria criteria)
+        if (response.IsSuccessStatusCode)
         {
-            Collection collection = null;
-
-            var response = await _httpClient.GetAsync(UriHelper.FormatCollectionRequestUri(criteria));
-
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                collection = JsonConvert.DeserializeObject<Collection>(result);
-            }
-
-            return collection;
+            var result = await response.Content.ReadAsStringAsync();
+            collection = JsonConvert.DeserializeObject<Collection>(result);
         }
 
-        public async Task<Wantlist> GetWantlistAsync(SearchCriteria criteria)
+        return collection;
+    }
+
+    public async Task<Wantlist> GetWantlistAsync(SearchCriteria criteria)
+    {
+        Wantlist wantlist = null;
+
+        var response = await _httpClient.GetAsync(UriHelper.FormatWantlistRequestUri(criteria));
+
+        if (response.IsSuccessStatusCode)
         {
-            Wantlist wantlist = null;
-
-            var response = await _httpClient.GetAsync(UriHelper.FormatWantlistRequestUri(criteria));
-
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                wantlist = JsonConvert.DeserializeObject<Wantlist>(result);
-            }
-
-            return wantlist;
+            var result = await response.Content.ReadAsStringAsync();
+            wantlist = JsonConvert.DeserializeObject<Wantlist>(result);
         }
+
+        return wantlist;
     }
 }

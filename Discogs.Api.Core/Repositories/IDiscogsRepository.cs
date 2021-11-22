@@ -1,11 +1,10 @@
 ﻿using Discogs.Api.Core.Models;
 using System.Threading.Tasks;
 
-namespace Discogs.Api.Core.Repositories
+namespace Discogs.Api.Core.Repositories;
+
+public interface IDiscogsRepository
 {
-    public interface IDiscogsRepository
-    {
-        Task<Collection> GetCollectionAsync(SearchCriteria criteria);
-        Task<Wantlist> GetWantlistAsync(SearchCriteria criteria);
-    }
+    Task<Collection> GetCollectionAsync(SearchCriteria criteria);
+    Task<Wantlist> GetWantlistAsync(SearchCriteria criteria);
 }

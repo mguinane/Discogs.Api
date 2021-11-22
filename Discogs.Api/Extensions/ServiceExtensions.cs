@@ -15,60 +15,59 @@ using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Reflection;
 
-namespace Discogs.Api.Extensions
+namespace Discogs.Api.Extensions;
+
+public static class ServiceExtensions
 {
-    public static class ServiceExtensions
+    public static void ConfigureContainer(this IServiceCollection services)
     {
-        public static void ConfigureContainer(this IServiceCollection services)
-        {
-            services.AddSingleton<IMappingService, MappingService>();
-            services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
+        services.AddSingleton<IMappingService, MappingService>();
+        services.AddSingleton<IDiscogsRepository, DiscogsRepository>();
 
-            services.AddSingleton<ILoggerAdapter<CollectionController>, LoggerAdapter<CollectionController>>();
-            services.AddSingleton<ILoggerAdapter<WantlistController>, LoggerAdapter<WantlistController>>();
-        }
+        services.AddSingleton<ILoggerAdapter<CollectionController>, LoggerAdapter<CollectionController>>();
+        services.AddSingleton<ILoggerAdapter<WantlistController>, LoggerAdapter<WantlistController>>();
+    }
 
-        public static void ConfigureControllers(this IServiceCollection services)
-        {
-            services.AddControllers()
-                .AddNewtonsoftJson(config =>
-                {
+    public static void ConfigureControllers(this IServiceCollection services)
+    {
+        services.AddControllers()
+            .AddNewtonsoftJson(config =>
+            {
                     // Allow camel casing in JSON property names
                     config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                })
-                .AddFluentValidation(config =>
-                {
-                    config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-                });
-        }
-
-        public static void ConfigureSwagger(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddSwaggerGen(config =>
+            })
+            .AddFluentValidation(config =>
             {
-                config.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = configuration["Swagger:Title"],
-                    Version = configuration["Swagger:Version"],
-                    Description = configuration["Swagger:Description"]
-                });
+                config.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             });
-        }
+    }
 
-        public static void ConfigureAutoMapper(this IServiceCollection services)
+    public static void ConfigureSwagger(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddSwaggerGen(config =>
         {
-            services.AddAutoMapper(typeof(Startup));
-        }
-
-        public static void ConfigureHttpClient(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddHttpClient<IDiscogsRepository, DiscogsRepository>(client =>
+            config.SwaggerDoc("v1", new OpenApiInfo
             {
-                client.BaseAddress = new Uri(configuration["Discogs:UrlRoot"]);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
-                client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
+                Title = configuration["Swagger:Title"],
+                Version = configuration["Swagger:Version"],
+                Description = configuration["Swagger:Description"]
             });
-        }
+        });
+    }
+
+    public static void ConfigureAutoMapper(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(Startup));
+    }
+
+    public static void ConfigureHttpClient(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddHttpClient<IDiscogsRepository, DiscogsRepository>(client =>
+        {
+            client.BaseAddress = new Uri(configuration["Discogs:UrlRoot"]);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MediaTypeNames.Application.Json));
+            client.DefaultRequestHeaders.Add("User-Agent", "Discogs.API/1.0");
+        });
     }
 }

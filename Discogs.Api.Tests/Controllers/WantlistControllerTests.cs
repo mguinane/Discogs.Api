@@ -13,78 +13,77 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Discogs.Api.Tests.Controllers
+namespace Discogs.Api.Tests.Controllers;
+
+public class WantlistControllerTests
 {
-    public class WantlistControllerTests
+    private WantlistController _wantlistController;
+    private Mock<IDiscogsRepository> _mockDiscogsRepository;
+    private Mock<ILoggerAdapter<WantlistController>> _mockLogger;
+    private Mock<IMappingService> _mockMappingService;
+
+    private readonly Wantlist _wantlist;
+    private readonly DiscogsDTO _wantlistDTO;
+
+    public WantlistControllerTests()
     {
-        private WantlistController _wantlistController;
-        private Mock<IDiscogsRepository> _mockDiscogsRepository;
-        private Mock<ILoggerAdapter<WantlistController>> _mockLogger;
-        private Mock<IMappingService> _mockMappingService;
+        _mockDiscogsRepository = new();
+        _mockLogger = new();
+        _mockMappingService = new();
+        _wantlistController = new(_mockDiscogsRepository.Object, _mockLogger.Object, _mockMappingService.Object);
 
-        private readonly Wantlist _wantlist;
-        private readonly DiscogsDTO _wantlistDTO;
+        _wantlist = FakeDataHelper.DeserializeFromJsonFile<Wantlist>("wantlist");
+        _wantlistDTO = FakeDataHelper.DeserializeFromJsonFile<DiscogsDTO>("wantlistDTO");
+    }
 
-        public WantlistControllerTests()
-        {
-            _mockDiscogsRepository = new();
-            _mockLogger = new();
-            _mockMappingService = new();
-            _wantlistController = new(_mockDiscogsRepository.Object, _mockLogger.Object, _mockMappingService.Object);
+    [Fact]
+    public async Task Get_AnySearchCriteria_ReturnOkObjectResult()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => new());
 
-            _wantlist = FakeDataHelper.DeserializeFromJsonFile<Wantlist>("wantlist");
-            _wantlistDTO = FakeDataHelper.DeserializeFromJsonFile<DiscogsDTO>("wantlistDTO");
-        }
+        var result = await _wantlistController.Get(new SearchCriteriaDTO()) as ObjectResult;
 
-        [Fact]
-        public async Task Get_AnySearchCriteria_ReturnOkObjectResult()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => new());
+        var actionResult = result.Should().BeOfType<OkObjectResult>().Subject;
+    }
 
-            var result = await _wantlistController.Get(new SearchCriteriaDTO()) as ObjectResult;
+    [Fact]
+    public async Task Get_AnySearchCriteriaAndEmptyRepository_ReturnNotFoundObjectResult()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => null);
 
-            var actionResult = result.Should().BeOfType<OkObjectResult>().Subject;
-        }
+        var result = await _wantlistController.Get(new SearchCriteriaDTO()) as ObjectResult;
 
-        [Fact]
-        public async Task Get_AnySearchCriteriaAndEmptyRepository_ReturnNotFoundObjectResult()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => null);
+        var actionResult = result.Should().BeOfType<NotFoundObjectResult>().Subject;
+    }
 
-            var result = await _wantlistController.Get(new SearchCriteriaDTO()) as ObjectResult;
+    [Fact]
+    public async Task Get_AnySearchCriteriaAndNonEmptyRepository_ReturnDiscogsDTO()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => _wantlist);
+        _mockMappingService.Setup(s => s.MapWantlist(It.IsAny<Wantlist>())).Returns(() => _wantlistDTO);
 
-            var actionResult = result.Should().BeOfType<NotFoundObjectResult>().Subject;
-        }
+        var result = await _wantlistController.Get(new SearchCriteriaDTO()) as ObjectResult;
 
-        [Fact]
-        public async Task Get_AnySearchCriteriaAndNonEmptyRepository_ReturnDiscogsDTO()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => _wantlist);
-            _mockMappingService.Setup(s => s.MapWantlist(It.IsAny<Wantlist>())).Returns(() => _wantlistDTO);
+        var discogsDTO = result.Value.Should().BeOfType<DiscogsDTO>().Subject;
+    }
 
-            var result = await _wantlistController.Get(new SearchCriteriaDTO()) as ObjectResult;
+    [Fact]
+    public async Task Get_RepositoryThrowsException_ReturnBadRequestResult()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
 
-            var discogsDTO = result.Value.Should().BeOfType<DiscogsDTO>().Subject;
-        }
+        var result = await _wantlistController.Get(new SearchCriteriaDTO());
 
-        [Fact]
-        public async Task Get_RepositoryThrowsException_ReturnBadRequestResult()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
+        var actionResult = result.Should().BeOfType<BadRequestResult>().Subject;
+    }
 
-            var result = await _wantlistController.Get(new SearchCriteriaDTO());
+    [Fact]
+    public async Task Get_ExceptionThrown_ErrorLogged()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
 
-            var actionResult = result.Should().BeOfType<BadRequestResult>().Subject;
-        }
+        var result = await _wantlistController.Get(new SearchCriteriaDTO());
 
-        [Fact]
-        public async Task Get_ExceptionThrown_ErrorLogged()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetWantlistAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
-
-            var result = await _wantlistController.Get(new SearchCriteriaDTO());
-
-            _mockLogger.Verify(l => l.LogError(It.IsAny<string>()));
-        }
+        _mockLogger.Verify(l => l.LogError(It.IsAny<string>()));
     }
 }

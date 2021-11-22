@@ -1,13 +1,12 @@
 ﻿using FluentValidation;
 
-namespace Discogs.Api.Models.Validators
+namespace Discogs.Api.Models.Validators;
+
+public class SearchCriteriaDTOValidator : AbstractValidator<SearchCriteriaDTO>
 {
-    public class SearchCriteriaDTOValidator : AbstractValidator<SearchCriteriaDTO>
+    public SearchCriteriaDTOValidator()
     {
-        public SearchCriteriaDTOValidator()
-        {
-            RuleFor(c => c.Username).NotEmpty().Length(5, 100);
-            RuleFor(c => c.PageSize).LessThanOrEqualTo(100);
-        }
+        RuleFor(c => c.Username).NotEmpty().Length(5, 100);
+        RuleFor(c => c.PageSize).LessThanOrEqualTo(100);
     }
 }

@@ -1,52 +1,51 @@
 ﻿using Discogs.Api.Core.Models;
 using System.Text;
 
-namespace Discogs.Api.Infrastructure.Repositories.Helpers
+namespace Discogs.Api.Infrastructure.Repositories.Helpers;
+
+public static class UriHelper
 {
-    public static class UriHelper
+    public static string FormatCollectionRequestUri(SearchCriteria criteria)
     {
-        public static string FormatCollectionRequestUri(SearchCriteria criteria)
-        {
-            StringBuilder requestUri = new();
+        StringBuilder requestUri = new();
 
-            // example - users/marcusg/collection/folders/0/releases?sort=artist&page=1&per_page=25
+        // example - users/marcusg/collection/folders/0/releases?sort=artist&page=1&per_page=25
 
-            requestUri.Append($"users/{criteria.Username.ToLower()}/collection/folders/");
+        requestUri.Append($"users/{criteria.Username.ToLower()}/collection/folders/");
 
-            if (criteria.FolderId > 0)
-                requestUri.Append($"{criteria.FolderId}/");
-            else
-                requestUri.Append("0/");
+        if (criteria.FolderId > 0)
+            requestUri.Append($"{criteria.FolderId}/");
+        else
+            requestUri.Append("0/");
 
-            requestUri.Append("releases?");
+        requestUri.Append("releases?");
 
-            if (criteria.Page > 0)
-                requestUri.Append($"page={criteria.Page}");
+        if (criteria.Page > 0)
+            requestUri.Append($"page={criteria.Page}");
 
-            if (criteria.PageSize > 0)           
-                requestUri.Append($"&per_page={criteria.PageSize}");
+        if (criteria.PageSize > 0)
+            requestUri.Append($"&per_page={criteria.PageSize}");
 
-            if (!string.IsNullOrWhiteSpace(criteria.SortBy))
-                requestUri.Append($"&sort={criteria.SortBy}");
+        if (!string.IsNullOrWhiteSpace(criteria.SortBy))
+            requestUri.Append($"&sort={criteria.SortBy}");
 
-            return requestUri.ToString();
-        }
+        return requestUri.ToString();
+    }
 
-        public static string FormatWantlistRequestUri(SearchCriteria criteria)
-        {
-            StringBuilder requestUri = new();
+    public static string FormatWantlistRequestUri(SearchCriteria criteria)
+    {
+        StringBuilder requestUri = new();
 
-            // example - users/marcusg/wants?page=1&per_page=25
+        // example - users/marcusg/wants?page=1&per_page=25
 
-            requestUri.Append($"users/{criteria.Username.ToLower()}/wants?");
+        requestUri.Append($"users/{criteria.Username.ToLower()}/wants?");
 
-            if (criteria.Page > 0)
-                requestUri.Append($"page={criteria.Page}");
+        if (criteria.Page > 0)
+            requestUri.Append($"page={criteria.Page}");
 
-            if (criteria.PageSize > 0)
-                requestUri.Append($"&per_page={criteria.PageSize}");
+        if (criteria.PageSize > 0)
+            requestUri.Append($"&per_page={criteria.PageSize}");
 
-            return requestUri.ToString();
-        }
+        return requestUri.ToString();
     }
 }

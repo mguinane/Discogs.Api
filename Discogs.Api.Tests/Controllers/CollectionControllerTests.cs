@@ -13,78 +13,77 @@ using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Discogs.Api.Tests.Controllers
+namespace Discogs.Api.Tests.Controllers;
+
+public class CollectionControllerTests
 {
-    public class CollectionControllerTests
+    private CollectionController _collectionController;
+    private Mock<IDiscogsRepository> _mockDiscogsRepository;
+    private Mock<ILoggerAdapter<CollectionController>> _mockLogger;
+    private Mock<IMappingService> _mockMappingService;
+
+    private readonly Collection _collection;
+    private readonly DiscogsDTO _collectionDTO;
+
+    public CollectionControllerTests()
     {
-        private CollectionController _collectionController;
-        private Mock<IDiscogsRepository> _mockDiscogsRepository;
-        private Mock<ILoggerAdapter<CollectionController>> _mockLogger;
-        private Mock<IMappingService> _mockMappingService;
+        _mockDiscogsRepository = new();
+        _mockLogger = new();
+        _mockMappingService = new();
+        _collectionController = new(_mockDiscogsRepository.Object, _mockLogger.Object, _mockMappingService.Object);
 
-        private readonly Collection _collection;
-        private readonly DiscogsDTO _collectionDTO; 
+        _collection = FakeDataHelper.DeserializeFromJsonFile<Collection>("collection");
+        _collectionDTO = FakeDataHelper.DeserializeFromJsonFile<DiscogsDTO>("collectionDTO");
+    }
 
-        public CollectionControllerTests()
-        {
-            _mockDiscogsRepository = new();
-            _mockLogger = new();
-            _mockMappingService = new();
-            _collectionController = new(_mockDiscogsRepository.Object, _mockLogger.Object, _mockMappingService.Object);
+    [Fact]
+    public async Task Get_AnySearchCriteria_ReturnOkObjectResult()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => new());
 
-            _collection = FakeDataHelper.DeserializeFromJsonFile<Collection>("collection");
-            _collectionDTO = FakeDataHelper.DeserializeFromJsonFile<DiscogsDTO>("collectionDTO");
-        }
+        var result = await _collectionController.Get(new SearchCriteriaDTO()) as ObjectResult;
 
-        [Fact]
-        public async Task Get_AnySearchCriteria_ReturnOkObjectResult()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => new());
+        var actionResult = result.Should().BeOfType<OkObjectResult>().Subject;
+    }
 
-            var result = await _collectionController.Get(new SearchCriteriaDTO()) as ObjectResult;
+    [Fact]
+    public async Task Get_AnySearchCriteriaAndEmptyRepository_ReturnNotFoundObjectResult()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => null);
 
-            var actionResult = result.Should().BeOfType<OkObjectResult>().Subject;
-        }
+        var result = await _collectionController.Get(new SearchCriteriaDTO()) as ObjectResult;
 
-        [Fact]
-        public async Task Get_AnySearchCriteriaAndEmptyRepository_ReturnNotFoundObjectResult()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => null);
+        var actionResult = result.Should().BeOfType<NotFoundObjectResult>().Subject;
+    }
 
-            var result = await _collectionController.Get(new SearchCriteriaDTO()) as ObjectResult;
+    [Fact]
+    public async Task Get_AnySearchCriteriaAndNonEmptyRepository_ReturnDiscogsDTO()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => _collection);
+        _mockMappingService.Setup(s => s.MapCollection(It.IsAny<Collection>())).Returns(() => _collectionDTO);
 
-            var actionResult = result.Should().BeOfType<NotFoundObjectResult>().Subject;
-        }
+        var result = await _collectionController.Get(new SearchCriteriaDTO()) as ObjectResult;
 
-        [Fact]
-        public async Task Get_AnySearchCriteriaAndNonEmptyRepository_ReturnDiscogsDTO()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).ReturnsAsync(() => _collection);
-            _mockMappingService.Setup(s => s.MapCollection(It.IsAny<Collection>())).Returns(() => _collectionDTO);
+        var discogsDTO = result.Value.Should().BeOfType<DiscogsDTO>().Subject;
+    }
 
-            var result = await _collectionController.Get(new SearchCriteriaDTO()) as ObjectResult;
+    [Fact]
+    public async Task Get_RepositoryThrowsException_ReturnBadRequestResult()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
 
-            var discogsDTO = result.Value.Should().BeOfType<DiscogsDTO>().Subject;
-        }
+        var result = await _collectionController.Get(new SearchCriteriaDTO());
 
-        [Fact]
-        public async Task Get_RepositoryThrowsException_ReturnBadRequestResult()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
+        var actionResult = result.Should().BeOfType<BadRequestResult>().Subject;
+    }
 
-            var result = await _collectionController.Get(new SearchCriteriaDTO());
+    [Fact]
+    public async Task Get_ExceptionThrown_ErrorLogged()
+    {
+        _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
 
-            var actionResult = result.Should().BeOfType<BadRequestResult>().Subject;
-        }
+        var result = await _collectionController.Get(new SearchCriteriaDTO());
 
-        [Fact]
-        public async Task Get_ExceptionThrown_ErrorLogged()
-        {
-            _mockDiscogsRepository.Setup(r => r.GetCollectionAsync(It.IsAny<SearchCriteria>())).Throws<Exception>();
-
-            var result = await _collectionController.Get(new SearchCriteriaDTO());
-
-            _mockLogger.Verify(l => l.LogError(It.IsAny<string>()));
-        }
+        _mockLogger.Verify(l => l.LogError(It.IsAny<string>()));
     }
 }

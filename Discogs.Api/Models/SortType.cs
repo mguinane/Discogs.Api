@@ -1,14 +1,13 @@
-﻿namespace Discogs.Api.Models
+﻿namespace Discogs.Api.Models;
+
+public enum SortType
 {
-    public enum SortType
-    {
-        label,
-        artist,
-        title,
-        catno,
-        format,
-        rating,
-        added,
-        year,
-    }
+    label,
+    artist,
+    title,
+    catno,
+    format,
+    rating,
+    added,
+    year,
 }
