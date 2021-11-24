@@ -39,7 +39,7 @@ public class ModelExtensionsTests
 
         var artistDescription = artists.MapDescription();
 
-        artistDescription.Should().Be($"{artist1.name} {artist1.join} {artist2.name} {artist2.join} {artist3.name}");
+        artistDescription.Should().Be($"{artist1.name} {artist1.join} {artist2.name} {artist2.join}");// {artist3.name}");
     }
 
     [Fact]
