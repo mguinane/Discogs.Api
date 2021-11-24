@@ -30,4 +30,5 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: 'test'
+    publishTestResults: true
     projects: '**/*Tests/*.csproj'
